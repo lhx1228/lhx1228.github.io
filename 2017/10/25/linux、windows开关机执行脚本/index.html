@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="linux开关机执行脚本前段时间，突发奇想，想到服务器如果异常关机，如何判断呢？如何判断服务器是认为关机还是非正常关机（停电、服务器故障等）呢？于是我在网上查阅了资料，了解了一些linux开关时的过程。 linux开关机过程先通过一张图来简单了解下整个系统启动的流程，整个过程基本可以分为POST–&amp;gt;BIOS–&amp;gt;MBR(GRUB)–&amp;gt;Kernel–&amp;gt;Init–&amp;gt;Runl">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux、windows开关机执行脚本">
+<meta property="og:url" content="http://yoursite.com/2017/10/25/linux、windows开关机执行脚本/index.html">
+<meta property="og:site_name" content="Lhx&#39;blog">
+<meta property="og:description" content="linux开关机执行脚本前段时间，突发奇想，想到服务器如果异常关机，如何判断呢？如何判断服务器是认为关机还是非正常关机（停电、服务器故障等）呢？于是我在网上查阅了资料，了解了一些linux开关时的过程。 linux开关机过程先通过一张图来简单了解下整个系统启动的流程，整个过程基本可以分为POST–&amp;gt;BIOS–&amp;gt;MBR(GRUB)–&amp;gt;Kernel–&amp;gt;Init–&amp;gt;Runl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/60b296e864926ae30e99e6fa68c0814c.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/d6381142fe5d15adca4c74c1d88b2cdd.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/4fc8bc9b351cc9b4219e4ecd24f4722a.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/65be897c32d5a7ef6b7cca3b8c450bac.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/394ff8d6a900fbf8d7cda7e73e8c0dcb.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/ff56b228e9de594abe0ff2efb087110d.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/ff56b228e9de594abe0ff2efb087110d.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/15a70e5e583b648fd4df68ce7eb77d22.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/930e8fa6f05edb0e61dd01bdb59fc3a2.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/e9d980b2d3da9fdeb7a56f0fd35bcdf5.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/85a9c326beba9f45942c02ba999d3bd2.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/c097742c54d090b1fbab06b0002b6565.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/de0ad1d0d785c2a10b4e66f724d000ce.png">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/09/5af7a5b136d3dda77c4cc8b7c40d73aa.png">
+<meta property="og:updated_time" content="2017-10-25T15:02:33.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux、windows开关机执行脚本">
+<meta name="twitter:description" content="linux开关机执行脚本前段时间，突发奇想，想到服务器如果异常关机，如何判断呢？如何判断服务器是认为关机还是非正常关机（停电、服务器故障等）呢？于是我在网上查阅了资料，了解了一些linux开关时的过程。 linux开关机过程先通过一张图来简单了解下整个系统启动的流程，整个过程基本可以分为POST–&amp;gt;BIOS–&amp;gt;MBR(GRUB)–&amp;gt;Kernel–&amp;gt;Init–&amp;gt;Runl">
+<meta name="twitter:image" content="http://119.29.89.242/wp-content/uploads/2017/09/60b296e864926ae30e99e6fa68c0814c.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/25/linux、windows开关机执行脚本/"/>
+
+
+
+
+
+  <title>linux、windows开关机执行脚本 | Lhx'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?df3f5c6c74cbd5fed139ae03b0993102";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhx'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/linux、windows开关机执行脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/th.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhx'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux、windows开关机执行脚本</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/25/linux、windows开关机执行脚本/" class="leancloud_visitors" data-flag-title="linux、windows开关机执行脚本">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="linux开关机执行脚本"><a href="#linux开关机执行脚本" class="headerlink" title="linux开关机执行脚本"></a><strong>linux开关机执行脚本</strong></h2><p>前段时间，突发奇想，想到服务器如果异常关机，如何判断呢？如何判断服务器是认为关机还是非正常关机（停电、服务器故障等）呢？<br>于是我在网上查阅了资料，了解了一些linux开关时的过程。</p>
+<h3 id="linux开关机过程"><a href="#linux开关机过程" class="headerlink" title="linux开关机过程"></a><strong>linux开关机过程</strong></h3><p>先通过一张图来简单了解下整个系统启动的流程，整个过程基本可以分为POST–&gt;BIOS–&gt;MBR(GRUB)–&gt;Kernel–&gt;Init–&gt;Runlevel。下面会详细说明每个过程的作用。</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/60b296e864926ae30e99e6fa68c0814c.png" alt=""></p>
+<h4 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a><strong>BIOS</strong></h4><p>BIOS(Basic Input/Output System)，基本输入输出系统，该系统存储于主板的ROM芯片上，计算机在开机时，会最先读取该系统，然后会有一个加电自检过程，这个过程其实就是检查CPU和内存，计算机最基本的组成单元(控制器、运算器和存储器)，还会检查其他硬件，若没有异常就开始加载BIOS程序到内存当中。详细的BIOS功能，这边就不说了，BIOS主要的一个功能就是存储了磁盘的启动顺序，BIOS会按照启动顺序去查找第一个磁盘头的MBR信息，并加载和执行MBR中的Bootloader程序，若第一个磁盘不存在MBR，则会继续查找第二个磁盘(PS：启动顺序可以在BIOS的界面中进行设置)，一旦BootLoader程序被检测并加载内存中，BIOS就将控制权交接给了BootLoader程序。</p>
+<h4 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a><strong>MBR</strong></h4><p>MBR(Master Boot Record)，主引导记录，MBR存储于磁盘的头部，大小为512bytes，其中，446bytes用于存储BootLoader程序，64bytes用于存储分区表信息，最后2bytes用于MBR的有效性检查，其结构图如下：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/d6381142fe5d15adca4c74c1d88b2cdd.png" alt="MBR结构图"></p>
+<h4 id="GRUB"><a href="#GRUB" class="headerlink" title="GRUB"></a><strong>GRUB</strong></h4><p>GRUB(Grand Unified Bootloader)，多系统启动程序，其执行过程可分为三个步骤：</p>
+<p>　　　Stage1：这个其实就是MBR，它的主要工作就是查找并加载第二段Bootloader程序(stage2)，但系统在没启动时，MBR根本找不到文件系统，也就找不到stage2所存放的位置，因此，就有了stage1_5</p>
+<p>　　　Stage1_5：该步骤就是为了识别文件系统</p>
+<p>　　　Stage2：GRUB程序会根据/boot/grub/grub.conf文件查找Kernel的信息，然后开始加载Kernel程序，当Kernel程序被检测并在加载到内存中，GRUB就将控制权交接给了Kernel程序。</p>
+<p>　　　PS：实际上这个步骤/boot还没被挂载，GRUB直接识别grub所在磁盘的文件系统，所以实际上应该是/grub/grub.conf文件，该配置文件的信息如下：</p>
+<p>　　　grub.conf：　</p>
+<p>　　　#boot=/dev/sda</p>
+<p>　　　default=0<br>　　　#设定默认启动的title的编号，从0开始</p>
+<p>　　　timeout=5<br>　　　#等待用户选择的超时时间</p>
+<p>　　　splashimage=(hd0,0)/boot/grub/splash.xpm.gz<br>　　　#GRUB的背景图片</p>
+<p>　　　hiddenmenu<br>　　　#隐藏菜单</p>
+<p>　　　title CentOS (2.6.18-194.el5PAE)<br>　　　#内核标题</p>
+<p>　　　root (hd0,0)<br>　　　#内核文件所在的设备</p>
+<p>　　　kernel /vmlinuz-2.6.18-194.el5PAE ro root=LABEL=/<br>　　　#内核文件路径以及传递给内核的参数</p>
+<p>　　　initrd /initrd-2.6.18-194.el5PAE.img<br>　　　#ramdisk文件路径
+　　　</p>
+<h4 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a><strong>Kernel</strong></h4><p>　　Kernel，内核，Kernel是Linux系统最主要的程序，实际上，Kernel的文件很小，只保留了最基本的模块，并以压缩的文件形式存储在硬盘中，当GRUB将Kernel读进内存，内存开始解压缩内核文件。讲内核启动，应该先讲下initrd这个文件，</p>
+<p>　　initrd(Initial RAM Disk)，它在stage2这个步骤就被拷贝到了内存中，这个文件是在安装系统时产生的，是一个临时的根文件系统(rootfs)。因为Kernel为了精简，只保留了最基本的模块，因此，Kernel上并没有各种硬件的驱动程序，也就无法识rootfs所在的设备，故产生了initrd这个文件，该文件装载了必要的驱动模块，当Kernel启动时，可以从initrd文件中装载驱动模块，直到挂载真正的rootfs，然后将initrd从内存中移除。</p>
+<p>　　Kernel会以只读方式挂载根文件系统，当根文件系统被挂载后，开始装载第一个进程(用户空间的进程)，执行/sbin/init，之后就将控制权交接给了init程序。
+　　</p>
+<h4 id="Init"><a href="#Init" class="headerlink" title="Init"></a><strong>Init</strong></h4><p>　　init，初始化，顾名思义，该程序就是进行OS初始化操作，实际上是根据/etc/inittab(定义了系统默认运行级别)设定的动作进行脚本的执行。</p>
+<p>（1）第一个被执行的脚本为/etc/rc.d/rc.sysinit，这个是真正的OS初始化脚本，简单讲下这个脚本的任务(可以去看看实际脚本，看看都做了什么)：</p>
+<p>　　1、激活udev和selinux；<br>　　2、根据/etc/sysctl.conf文件，来设定内核参数；<br>　　3、设定系统时钟；<br>　　4、装载硬盘映射；<br>　　5、启用交换分区；<br>　　6、设置主机名；<br>　　7、根文件系统检测，并以读写方式重新挂载根文件系统；<br>　　8、激活RAID和LVM设备；<br>　　9、启用磁盘配额；<br>　　10、根据/etc/fstab，检查并挂载其他文件系统；<br>　　11、清理过期的锁和PID文件</p>
+<p>　　当/etc/rc.d/rc.sysinit执行完后，系统就可以顺利工作了，只是还需要启动系统所需要的各种服务，这样主机才可以提供相关的网络和主机功能，因此便会执行下面的脚本.</p>
+<p>（2）执行/etc/rc.d/rc脚本。该文件定义了服务启动的顺序是先K后S，而具体的每个运行级别的服务状态是放在/etc/rc.d/rc<em>.d（</em>=0~6）目录下，所有的文件均是指向/etc/init.d下相应文件的符号链接。rc.sysinit通过分析/etc/inittab文件来确定系统的启动级别，然后才去执行/etc/rc.d/rc*.d下的文件。</p>
+<pre><code>/etc/init.d-&gt; /etc/rc.d/init.d
+/etc/rc -&gt;/etc/rc.d/rc
+/etc/rc*.d -&gt;/etc/rc.d/rc*.d
+/etc/rc.local-&gt; /etc/rc.d/rc.local
+/etc/rc.sysinit-&gt; /etc/rc.d/rc.sysinit
+</code></pre><p>也就是说，/etc目录下的init.d、rc、rc*.d、rc.local和rc.sysinit均是指向/etc/rc.d目录下相应文件和文件夹的符号链接。我们以启动级别3为例来简要说明一下。</p>
+<p>/etc/rc.d/rc3.d目录，该目录下的内容全部都是以 S 或 K 开头的链接文件，都链接到”/etc/rc.d/init.d”目录下的各种shell脚本。</p>
+<p>S表示的是启动时需要start的服务内容，K表示关机时需要关闭的服务内容。/etc/rc.d/rc<em>.d中的系统服务会在系统后台启动，如果要对某个运行级别中的服务进行更具体的定制，通过chkconfig命令来操作，或者通过setup、ntsys、system-config-services来进行定制。如果我们需要自己增加启动的内容，可以在init.d目录中增加相关的shell脚本，然后在rc</em>.d目录中建立链接文件指向该shell脚本。这些shell脚本的启动或结束顺序是由S或K字母后面的数字决定，数字越小的脚本越先执行。例如，/etc/rc.d/rc3.d /S01sysstat就比/etc/rc.d/rc3.d /S99local先执行。</p>
+<p>（3）执行用户自定义引导程序/etc/rc.d/rc.local。</p>
+<p>其实当执行/etc/rc.d/rc3.d/S99local时，它就是在执行/etc/rc.d/rc.local。S99local是指向rc.local的符号链接。就是一般来说，自定义的程序不需要执行上面所说的繁琐的建立shell增加链接文件的步骤，只需要将命令放在rc.local里面就可以了，这个shell脚本就是保留给用户自定义启动内容的。</p>
+<p>（4）完成了系统所有的启动任务后，linux会启动终端或X-Window来等待用户登录。</p>
+<p>tty1,tty2,tty3…这表示在运行等级1，2，3，4的时候，都会执行”/sbin/mingetty”，而且执行了6个，所以linux会有6个纯文本终端，mingetty就是启动终端的命令。</p>
+<p>除了这6个之外还会执行”/etc/X11/prefdm-nodaemon”这个主要启动X-Window<br><strong>至此，系统就启动完毕了。</strong></p>
+<p><strong>注意：</strong>尽管<strong>/etc/init.d</strong>中的脚本能够启动和停止各个服务，但是由<strong>init</strong>运行的主控脚本还要知道其他一些信息，这些信息说明了要进入任何指定的运行级别需运行哪些脚本。当主脚本把系统引入到一个新的运行级别时，它不是直接在<strong>init.d</strong>目录下找，而是查找叫做<strong>rc(0-6).d</strong>的目录。</p>
+<p>这些<strong>rc(0-6).d</strong>目录包含的符号链接都链接到了<strong>init.d</strong>目录中的脚本上。这些符号链接的名称都以<strong>S或K</strong>开头，后跟一个数字以及该脚本所控制的服务名(例如，S10test)。当<strong>init</strong>从低运行级别向高运行级别过渡时，它按照数字递增的顺序，带<strong>start</strong>参数运行所有以<strong>S</strong>开头的脚本。当<strong>init</strong>从高运行级别向低运行级别过渡时，它按照数字递减的顺序，带<strong>stop</strong>参数运行所有以<strong>K</strong>开头的脚本。</p>
+<p>这种机制让系统管理员可以细粒度地控制启动服务的顺序。例如，test1的脚本序号为10，test2的脚本序号为20，那么test1一定先执行。在加入新服务时，一定要考虑到这种依赖关系。</p>
+<h4 id="Runlevel"><a href="#Runlevel" class="headerlink" title="Runlevel"></a><strong>Runlevel</strong></h4><p>　　runlevel，运行级别，不同的级别会启动的服务不一样，init会根据定义的级别去执行相应目录下的脚本，Linux的启动级别分为以下几种</p>
+<p>　　0：关机模式</p>
+<p>　　1：单一用户模式(直接以管理员身份进入)</p>
+<p>　　2：多用户模式（无网络）</p>
+<p>　　3：多用户模式（命令行）</p>
+<p>　　4：保留</p>
+<p>　　5：多用户模式（图形界面）</p>
+<p>　　6：重启</p>
+<p>　　在不同的运行级别下，/etc/rc.d/rc这个脚本会分别执行不同目录下的脚本</p>
+<ul>
+<li>Run level 0 – /etc/rc.d/rc0.d/</li>
+<li>Run level 1 – /etc/rc.d/rc1.d/</li>
+<li>Run level 2 – /etc/rc.d/rc2.d/</li>
+<li>Run level 3 – /etc/rc.d/rc3.d/</li>
+<li>Run level 4 – /etc/rc.d/rc4.d/</li>
+<li>Run level 5 – /etc/rc.d/rc5.d/</li>
+<li>Run level 6 – /etc/rc.d/rc6.d/</li>
+</ul>
+<p>　　这些目录下的脚本只有K<em>和S</em>开头的文件，K开头的文件为开机需要执行关闭的服务，S开头的文件为开机需要执行开启的服务。<br>　　<br>参考资料：<br><a href="http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html</a><br><a href="http://blog.csdn.net/miss_acha/article/details/50004717" target="_blank" rel="external">http://blog.csdn.net/miss_acha/article/details/50004717</a><br><a href="http://www.cnblogs.com/codecc/p/boot.html" target="_blank" rel="external">http://www.cnblogs.com/codecc/p/boot.html</a><br><a href="http://fity.cn/post/30.html" target="_blank" rel="external">http://fity.cn/post/30.html</a></p>
+<h3 id="linux开机执行脚本"><a href="#linux开机执行脚本" class="headerlink" title="linux开机执行脚本"></a><strong>linux开机执行脚本</strong></h3><p><strong>linux开机执行脚本有四种方法：</strong><br>1.把想要执行的脚本放在/etc/rc.local中，假如要执行的脚本名为test.sh,结果如下图：<br><img src="http://119.29.89.242/wp-content/uploads/2017/09/4fc8bc9b351cc9b4219e4ecd24f4722a.png" alt=""></p>
+<p>2.使用crontab 来实现开机执行脚本。</p>
+<p>crontab 为linux下一个配置定时任务的命令，下面会有它的详细介绍，现在我们来说一下如何使用它来实现开机执行脚本：</p>
+<pre><code>我们在终端输入：crontab -e,然后再末尾加入:
+@reboot 需要执行脚本的路径
+例如:
+@reboot /home/lei/test.sh
+</code></pre><p>这样，我们就可以利用crontab来实现开机执行脚本了。</p>
+<p>crontab的详细使用方法参考下面的资料：</p>
+<p><a href="http://blog.csdn.net/yangkai_hudong/article/details/13774895" target="_blank" rel="external">http://blog.csdn.net/yangkai_hudong/article/details/13774895</a></p>
+<p><a href="https://linux.cn/article-7513-1.html" target="_blank" rel="external">https://linux.cn/article-7513-1.html</a></p>
+<p>3.将相应的脚本放在/etc/init.d目录中，然后再建立软连接，如下:</p>
+<pre><code>vi /etc/init.d/test.sh
+输入相应的脚本后按Esc,然后输入:wq
+之后输入:
+ln -s ../init.d/test.sh /etc/rc2.d/S01test
+</code></pre><p>4.使用linux内置软件.</p>
+<p>在终端输入:gnome-session-properties,会弹出下图所示窗口：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/65be897c32d5a7ef6b7cca3b8c450bac.png" alt=""></p>
+<p>之后点击添加，在命令一栏中放入想要执行的脚本的位置，名称和注释随便添，之后点击添加就完成了。</p>
+<h3 id="linux关机执行脚本"><a href="#linux关机执行脚本" class="headerlink" title="linux关机执行脚本"></a><strong>linux关机执行脚本</strong></h3><p>最初在网上查阅资料，<strong>在/etc/init.d目录中，放入脚本，然后建立软连接到/etc/rc0.d、/etc/rc6.d目录中，</strong>命令如下:</p>
+<pre><code>sudo vi test.sh
+sudo chmod +x test.sh
+sudo ln -s ../init.d/test.sh /etc/rc0.d/K10test
+sudo ln -s ../init.d/test.sh /etc/rc6.d/K10test 
+</code></pre><p> 下图为建立软链接之后：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/394ff8d6a900fbf8d7cda7e73e8c0dcb.png" alt=""></p>
+<p>/etc/rc0.d目录下为关机时会执行的脚本，而/etc/rc6.d目录下为重启时会执行的脚本。而K表示关机时会执行，S表示开机时会执行。</p>
+<p>   其中，test.sh脚本的内容为:</p>
+<pre><code>echo $(date) &gt;&gt; /home/lei/log
+</code></pre><p> 即开机时在/home/lei下的log文件下记录关机时的时间。</p>
+<p> 目录/home/lei下原来的文件如下：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/ff56b228e9de594abe0ff2efb087110d.png" alt=""></p>
+<p>但是关机重启之后，脚本并没有执行。如下：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/ff56b228e9de594abe0ff2efb087110d.png" alt=""></p>
+<p>这是为什么呢？</p>
+<p><strong>查阅资料后发现，需要在/var/lock/subsys/目录下放入一个空的，名称为脚本的名称的一个文件，</strong>例如：</p>
+<p>目录/etc/init.d目录下的脚本名称为test.sh,则应在/var/lock/subsys目录下放入一个0字节的名称为test的文件。命令如下：</p>
+<pre><code>sudo touch /var/lock/subsys/test
+</code></pre><p><img src="http://119.29.89.242/wp-content/uploads/2017/09/15a70e5e583b648fd4df68ce7eb77d22.png" alt=""></p>
+<p>但这样做之后，发现重新启动之后，脚本还是没有执行。那这又是为什么呢？</p>
+<p><strong>之后我做了个测试，单独在/var/lock/subsys目录下放入一个文件，重启之后发现，该文件消失了。</strong>如下图:</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/930e8fa6f05edb0e61dd01bdb59fc3a2.png" alt=""></p>
+<p><strong>文章前面提到过，在目录/etc/rc.local下放入相应的脚本，该脚本会在开机时执行。于是，我们这样做：在/etc/rc.local目录下放入一个脚本，脚本的作用为开机时在/var/lock/subsys下创建一个0字节的与需要关机执行的脚本名称相同的一个文件，</strong>命令如下：</p>
+<pre><code>sudo vi /etc/rc.local
+
+在最后加入touch /var/lock/subsys/test
+</code></pre><p>结果如图：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/e9d980b2d3da9fdeb7a56f0fd35bcdf5.png" alt=""></p>
+<p>至此，我们重启后发现，脚本顺利执行了，哇，终于成功了。 如下图：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/85a9c326beba9f45942c02ba999d3bd2.png" alt=""></p>
+<h2 id="windows开机执行脚本"><a href="#windows开机执行脚本" class="headerlink" title="windows开机执行脚本"></a><strong>windows开机执行脚本</strong></h2><p>很多时候，我们在开机时需要打开一系列固定的应用，例如：QQ，office等。但每次开机都手动的打开这些应用，未免太麻烦了。那有没有什么办法来开机自启这些应用呢？下面来介绍方法：</p>
+<ul>
+<li><p><strong>我们可以使用Notepad++来创建一个.bat文件，在其中写入命令，然后将其放入windows下的启动目录中。</strong></p>
+<p>  1.下面我们来介绍.bat文件中的命令。</p>
+<ul>
+<li><p>假如我们要开机自启QQ（这里以TIM为例），命令如下：</p>
+<pre><code>start + 路径
+这里的路径为TIM的.exe文件的路径，例如：
+start D:\TIM\Bin\TIM
+</code></pre><p>下图为TIM.exe的示例：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/c097742c54d090b1fbab06b0002b6565.png" alt=""></p>
+</li>
+<li><p>假如我们需要开机自动打开一系列网页，命令如下：</p>
+<pre><code>import webbrowser
+url = [
+    &apos;https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000&apos;,  
+    &apos;https://pan.baidu.com/&apos;,
+    &apos;https://www.google.com.hk&apos;,
+    &apos;https://vnc.qcloud.com/?innerIp=10.104.59.172&amp;uuid=02d075be-e1fb-425b-b09e-d0d5f84e8b5d&amp;regionId=1&apos;,
+    &apos;http://www.wuji8.com/topic/30l11v.html&apos;
+]
+for i in range(5):
+    webbrowser.open(url[i])
+</code></pre></li>
+<li><p>假如我们需要开机自启虚拟机，命令如下：</p>
+<pre><code>&quot;D:\vmware\vmrun.exe&quot; start &quot;E:\ubuntu\Ubuntu 64 位.vmx&quot; nogui 
+</code></pre><p><strong>start前面部分是你VMware的安装路径（如下第一个图），后面到nogui部分是你Linux系统文件路径。（如下第二个图）</strong></p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/de0ad1d0d785c2a10b4e66f724d000ce.png" alt="" title="图一"></p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/09/5af7a5b136d3dda77c4cc8b7c40d73aa.png" alt="" title="图二"></p>
+<p>2.windows系统下启动（.bat文件存放处)目录路径：</p>
+<pre><code>C:\Users\Lhx\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+或者直接在搜索栏输入启动
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="如何取消黑框框-DOS窗口-？"><a href="#如何取消黑框框-DOS窗口-？" class="headerlink" title="如何取消黑框框(DOS窗口)？"></a>如何取消黑框框(DOS窗口)？</h3><p>按照上述的方法实现开机自启后，还有一个特别困扰我们的问题困扰我们，那就是<strong>在自启这些应用的过程中，会出现一个DOS窗口。</strong>那么如何取消这个黑框呢？方法如下：</p>
+<ul>
+<li><p>仍然是使用Notepad++来编辑一个.vbs文件，然后在其中写入如下代码：</p>
+<pre><code>Set ws = CreateObject(&quot;Wscript.Shell&quot;)
+ws.run &quot;cmd /c 路径&quot;,vbhide
+</code></pre><p>  其中路径为.bat文件的路径。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/25/VLAN/" rel="next" title="VLAN">
+                <i class="fa fa-chevron-left"></i> VLAN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/25/Shell命令日常总结/" rel="prev" title="Shell命令日常总结">
+                Shell命令日常总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/th.jpg"
+               alt="Lhx" />
+          <p class="site-author-name" itemprop="name">Lhx</p>
+           
+              <p class="site-description motion-element" itemprop="description">你必须很努力 才能看上去毫不费力</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux开关机执行脚本"><span class="nav-number">1.</span> <span class="nav-text">linux开关机执行脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux开关机过程"><span class="nav-number">1.1.</span> <span class="nav-text">linux开关机过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BIOS"><span class="nav-number">1.1.1.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MBR"><span class="nav-number">1.1.2.</span> <span class="nav-text">MBR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GRUB"><span class="nav-number">1.1.3.</span> <span class="nav-text">GRUB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kernel"><span class="nav-number">1.1.4.</span> <span class="nav-text">Kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Init"><span class="nav-number">1.1.5.</span> <span class="nav-text">Init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Runlevel"><span class="nav-number">1.1.6.</span> <span class="nav-text">Runlevel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux开机执行脚本"><span class="nav-number">1.2.</span> <span class="nav-text">linux开机执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux关机执行脚本"><span class="nav-number">1.3.</span> <span class="nav-text">linux关机执行脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows开机执行脚本"><span class="nav-number">2.</span> <span class="nav-text">windows开机执行脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何取消黑框框-DOS窗口-？"><span class="nav-number">2.1.</span> <span class="nav-text">如何取消黑框框(DOS窗口)？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhx</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Vgjv1AOMVKMkD6b4EaAIbeLo-gzGzoHsz", "wjFnf9XvYJhS7AYpT1iqXoxP");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
