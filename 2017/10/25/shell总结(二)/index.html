@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell,linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="cat简介cat可以用来读取、显示、拼接文件内容。下面进行简单介绍：  打印单个文件的内容：  12cat file.txtHello World  打印多个文件的内容：  123cat one.txt two.txtThis is line from one.txtThis is line from two.txt  将stdin和文件中的数据结合起来：  12echo &apos;Hello World">
+<meta name="keywords" content="shell,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell总结(二)">
+<meta property="og:url" content="http://yoursite.com/2017/10/25/shell总结(二)/index.html">
+<meta property="og:site_name" content="Lhx&#39;blog">
+<meta property="og:description" content="cat简介cat可以用来读取、显示、拼接文件内容。下面进行简单介绍：  打印单个文件的内容：  12cat file.txtHello World  打印多个文件的内容：  123cat one.txt two.txtThis is line from one.txtThis is line from two.txt  将stdin和文件中的数据结合起来：  12echo &apos;Hello World">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/08/a939cdcd914c978713fa9ef7386c0425.png">
+<meta property="og:updated_time" content="2017-10-25T14:51:09.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell总结(二)">
+<meta name="twitter:description" content="cat简介cat可以用来读取、显示、拼接文件内容。下面进行简单介绍：  打印单个文件的内容：  12cat file.txtHello World  打印多个文件的内容：  123cat one.txt two.txtThis is line from one.txtThis is line from two.txt  将stdin和文件中的数据结合起来：  12echo &apos;Hello World">
+<meta name="twitter:image" content="http://119.29.89.242/wp-content/uploads/2017/08/a939cdcd914c978713fa9ef7386c0425.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/25/shell总结(二)/"/>
+
+
+
+
+
+  <title>shell总结(二) | Lhx'blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?df3f5c6c74cbd5fed139ae03b0993102";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhx'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/shell总结(二)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/th.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhx'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">shell总结(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/25/shell总结(二)/" class="leancloud_visitors" data-flag-title="shell总结(二)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="cat简介"><a href="#cat简介" class="headerlink" title="cat简介"></a>cat简介</h2><p>cat可以用来读取、显示、拼接文件内容。下面进行简单介绍：</p>
+<ul>
+<li>打印单个文件的内容：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat file.txt</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<ul>
+<li>打印多个文件的内容：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat one.txt two.txt</div><div class="line">This is line from one.txt</div><div class="line">This is line from two.txt</div></pre></td></tr></table></figure>
+<ul>
+<li>将stdin和文件中的数据结合起来：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">'Hello World'</span> | cat - file.txt</div><div class="line">- 被作为stdin文本的文件名</div></pre></td></tr></table></figure>
+<p>下面来介绍一些cat命令的选项：</p>
+<ul>
+<li>摆脱多余的空白行：</li>
+</ul>
+<p>很多时候，一个文件中可能会有很多连续的空白行，影响我们阅读，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cat file.txt</div><div class="line">line1</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">line2</div><div class="line"></div><div class="line"></div><div class="line">line3</div></pre></td></tr></table></figure>
+<p>如果想要删除多余的空白行，我们可以使用以下方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cat -s file.txt</div><div class="line">line1</div><div class="line"></div><div class="line">line2</div><div class="line"></div><div class="line">line3</div></pre></td></tr></table></figure>
+<ul>
+<li>有时候我们使用cat来查看文本的时候，想要同时显示行号，方法如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cat file.txt</div><div class="line">line1</div><div class="line">line2</div><div class="line">line3</div><div class="line"></div><div class="line">cat -n file.txt</div><div class="line">	1 line1</div><div class="line">	2 line2 </div><div class="line">	3 line3</div></pre></td></tr></table></figure>
+<p><strong>注意，-n甚至会为空白行加上行号，如果想要跳过空白行，可以使用-b。</strong></p>
+<h2 id="录制并回放终端回话"><a href="#录制并回放终端回话" class="headerlink" title="录制并回放终端回话"></a>录制并回放终端回话</h2><p>很多时候我们需要为别人在终端演示某些操作或是需要准备一个命令行教程，通常得一边手动输入命令一边演示，或者也可以录制一段屏幕演示视频。今天介绍的方法是<strong>使用script和scriptreplay命令来录制命令的次序以及时序，将相关数据记录在文本文件中。</strong>利用这些文件，其他人可以在终端上回放并查看命令的输出。下面来进行介绍：</p>
+<ul>
+<li>开始录制终端回话：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">script -t 2&gt; 文件1 -a 文件2</div><div class="line">例如：</div><div class="line">script -t 2&gt; timing.log -a output.session</div></pre></td></tr></table></figure>
+<p>两个配置文件被当做script命令的参数。其中<strong>文件1(timing.log)用来存储时序信息，描述每一个命令在何时运行；文件2(output.session)用来存储命令输出。</strong>-t选项用于将时序数据导入stderr。2&gt;则用于将stderr重定向到文件1(timing.log)。</p>
+<p>当希望录制结束时，我们在终端键入<strong>exit</strong>，终端会回显：</p>
+<p><img src="http://119.29.89.242/wp-content/uploads/2017/08/a939cdcd914c978713fa9ef7386c0425.png" alt=""></p>
+<ul>
+<li>回放：</li>
+</ul>
+<p>录制完成后，我们使用如下命令回放：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">scriptreplay 文件1 文件2</div><div class="line">按照上面的例子就是：</div><div class="line">scriptreplay timing.log output.session</div></pre></td></tr></table></figure>
+<p>我们可以把文件1(timing.log)和文件2(output.session)分享给任何人，来使他们回放终端回话。</p>
+<h2 id="文件查找-find命令"><a href="#文件查找-find命令" class="headerlink" title="文件查找(find命令)"></a>文件查找(find命令)</h2><ul>
+<li><h3 id="列出当前目录及子目录下所有的文件和文件夹"><a href="#列出当前目录及子目录下所有的文件和文件夹" class="headerlink" title="列出当前目录及子目录下所有的文件和文件夹"></a>列出当前目录及子目录下所有的文件和文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">find + 目录</div><div class="line">例如：</div><div class="line">find /home/lei/</div><div class="line">find . -<span class="built_in">print</span></div></pre></td></tr></table></figure>
+<p>  -print 指明打印出匹配文件的文件名（路径）。当使用  -print 时， ‘\n’作为用于对输出的文件名进行分隔。就算你忽略 -print ， find 命令仍会打印出文件名。</p>
+<p>  -print0 指明使用 ‘\0’ 作为匹配的文件名之间的定界符。当文件名中包含换行符时，这个方法就有用武之地了。</p>
+</li>
+<li><h3 id="根据文件名或正则表达式进行搜索-i-name-、-regex"><a href="#根据文件名或正则表达式进行搜索-i-name-、-regex" class="headerlink" title="根据文件名或正则表达式进行搜索(-(i)name 、-regex)"></a>根据文件名或正则表达式进行搜索(-(i)name 、-regex)</h3><p>  <strong>选项-name的参数指定了文件名所必须匹配的字符串。</strong>例如想要匹配出所有以.txt结尾的文件名：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /home/lei -name <span class="string">".txt"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>还有一个选项与-name类似，那就是**-iname,区别是它在匹配名字时会忽略大小写。**例如：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">example.txt  Example.txt</div><div class="line">$ find -name <span class="string">"example*"</span></div><div class="line">./example.txt</div><div class="line">$ find -iname <span class="string">"example*"</span></div><div class="line">./example.txt</div><div class="line">./Example.txt</div></pre></td></tr></table></figure>
+
+
+**如果想匹配多个条件**，可以采用**-o**选项。
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">file.txt  text.py</div><div class="line">$ find /home/lhx \( -name <span class="string">"*.txt"</span> -o -name <span class="string">"*.py"</span> \)<span class="comment">#注意（）中第一个-name 前有一个空格</span></div><div class="line">./file.txt</div><div class="line">./text.py</div></pre></td></tr></table></figure>
+
+** \\(以及\\)用于将 -name &quot;\*.txt&quot; -o -name &quot;\*.py&quot; 视为一个整体.**
+
+**选项-regex是基于正则表达式来匹配的。**
+例如：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">new.txt test.py 123.sh</div><div class="line">$ find . -regex <span class="string">".*\(\.py\|\.sh\)$"</span></div><div class="line">./test.py</div><div class="line">./123.sh</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><h3 id="否定参数"><a href="#否定参数" class="headerlink" title="否定参数(!)"></a>否定参数(!)</h3><p>  find 可以使用 “!” 否定参数的含义。例如:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ find  -name <span class="string">"*.txt"</span></div></pre></td></tr></table></figure>
+<p>  上面的命令用来匹配所有不以.txt结尾的文件名。</p>
+</li>
+<li><h3 id="目录深度的搜索-maxdepth-、-mindepth"><a href="#目录深度的搜索-maxdepth-、-mindepth" class="headerlink" title="目录深度的搜索(-maxdepth 、-mindepth)"></a>目录深度的搜索(-maxdepth 、-mindepth)</h3><p>  <strong>find命令在使用时会遍历所有的目录，</strong>但很多时候这是多余的。我们可以采用-maxdepth和-mindepth来限制遍历的目录深度。</p>
+<p>  我们可以使用-maxdepth来限制最大深度，例如只允许find在当前目录中查找：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -maxdepth 1 -name <span class="string">"*.txt"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>如果我们想从第二级目录下开始查找，那么就使用-mindepth来实现:
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -mindepth 2 -name <span class="string">"*.py"</span></div></pre></td></tr></table></figure>
+
+
+最后应注意：**-maxdepth和-mindepth选项最好放在目录后面，否则可能会影响find的效率。**例如，-name放在-maxdepth前，那么就会先找到符合-name的文件，然后在所有匹配的文件中再找出符合指定深度的那些，这会造成一定的不必要的查找。
+</code></pre><ul>
+<li><h3 id="根据文件类型搜索-type"><a href="#根据文件类型搜索-type" class="headerlink" title="根据文件类型搜索(-type)"></a>根据文件类型搜索(-type)</h3><p>  在Unix类系统中，将一切都视为文件。文件有不同的类型，例如普通文件，目录，套接字，设备等等。</p>
+<p>  -type可以对文件搜索进行过滤。而且平时，如果我们向分别列出目录和普通文件可不容易，现在利用find，则可以做到。例如：</p>
+<ul>
+<li>只列出所有的目录：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ find . -<span class="built_in">type</span> d</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- 只列出普通文件：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ find . -<span class="built_in">type</span> f</div></pre></td></tr></table></figure>
+
+
+- 只列出夫符号链接：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ find . -<span class="built_in">type</span> l</div></pre></td></tr></table></figure>
+
+
+各文件所对应的参数如下:
+
+![](http://119.29.89.242/wp-content/uploads/2017/09/51995d7fd870d298803d05cedeb3690d.png)
+</code></pre><ul>
+<li><h3 id="根据文件时间进行搜索"><a href="#根据文件时间进行搜索" class="headerlink" title="根据文件时间进行搜索"></a>根据文件时间进行搜索</h3><p>  Unix/Linux文件系统中的每一个文件都有三种时间戳，如下:</p>
+<ul>
+<li>访问时间(-atime):用户最近一次访问文件的时间。</li>
+<li>修改时间(-mtime):文件内容最后一次被修改的时间。</li>
+<li><p>变化时间(-ctime):文件元数据(例如权限或所有权)最后一次改变的时间。</p>
+<p>-atime、-mtime、-ctime可作为find的时间选项。它们可以用<strong>整数值</strong>指定，单位为天。还可以添加-或+来表示小于、大于。</p>
+</li>
+<li><p><strong>打印最近七天被访问过得文件：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -<span class="built_in">type</span> f -atime -7</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- **打印恰好在七天前被访问过的文件：**
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -<span class="built_in">type</span> f -atime 7</div></pre></td></tr></table></figure>
+
+
+-mtime、-ctime用法相同。
+
+此外，还有以**分钟**为计量单位的选项,用法与上面的类似：
+
+- -amin(访问时间);
+- -mmin(修改时间);
+- -cmin(变化时间);
+
+我们可以通过**-newer**参数，**指定一个用于比较时间戳的参考文件，然后找出比参考文件更新的文件：**
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -newer file.txt</div></pre></td></tr></table></figure>
+
+
+上面的命令就是来找出比 file.txt 更新的文件。
+</code></pre><ul>
+<li><h3 id="根据文件大小搜索-size"><a href="#根据文件大小搜索-size" class="headerlink" title="根据文件大小搜索(-size)"></a>根据文件大小搜索(-size)</h3><p>  根据文件的大小实现搜索时，需要使用<strong>-size</strong>选项，这时也可以使用 -或+ 来表示小于或大于，例如：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -size +2k</div><div class="line"><span class="comment">#搜索大于2K的文件</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -size 2k</div><div class="line"><span class="comment">#搜索大小为2K的文件</span></div></pre></td></tr></table></figure>
+
+
+当然，除了使用k表示大小之外，我们还可以使用以下大小单元：
+
+![](http://119.29.89.242/wp-content/uploads/2017/09/ae30a72f426f190e4c30bcf93ffe3c5d.png)
+</code></pre><ul>
+<li><h3 id="删除匹配的文件-delete"><a href="#删除匹配的文件-delete" class="headerlink" title="删除匹配的文件(-delete)"></a>删除匹配的文件(-delete)</h3><p>  很多时候，我们需要删除一些有共同特征的文件，例如删除所有的以”.txt”结尾的文件。如果一个一个删除的话，难免会很麻烦，使用<strong>-delete</strong> 可以节约很多时间，使用方法如下:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -name <span class="string">"*.txt"</span> -delete</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>使用这种方法就可以将后缀为&quot;.txt&quot;的文件全部删除。
+</code></pre><ul>
+<li><h3 id="根据文件权限和用户搜索-perm、-user"><a href="#根据文件权限和用户搜索-perm、-user" class="headerlink" title="根据文件权限和用户搜索(-perm、-user)"></a>根据文件权限和用户搜索(-perm、-user)</h3><p>  如何列出具有特定权限的文件呢？方法如下：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -perm 644</div></pre></td></tr></table></figure>
+<p>  上面的命令可以打印出权限为644的文件。</p>
+<p>  有些时候，我们需要将一些文件设置为合适的权限，那么如何找出那些不符合的文件呢？</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f ! -perm 755</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>上面的命令会打印出权限不是755的文件。
+
+**选项-user**可以找出某个特定用户所拥有的文件。
+
+例如打印出用户lei的所有文件:
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -user lei</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><h3 id="利用find执行命令-exec"><a href="#利用find执行命令-exec" class="headerlink" title="利用find执行命令(-exec)"></a>利用find执行命令(-exec)</h3><p>  通过上面的介绍，我们知道了如何使用find来搜索到我们需要的文件。但如果我们想要对这些文件<strong>进行一些修改</strong>我们应该怎么做呢？</p>
+<p>  例如，我们需要将root用户的一些文件的所有权更改为另一位用户，我们可以根据一下方法来实现：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -name <span class="string">"*.txt"</span> -user root -<span class="built_in">exec</span> chown lei &#123;&#125;\;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>上面的命令表示，将root用户以&quot;.txt&quot;结尾的文件的所有权更改为lei。**其中，{}是一个与-exec选项搭配使用的特殊字符串。对于匹配到的文件，{}会被替换成相应的文件名。**例如， find 命令找到两个文件test1.txt和test2.txt，其所有者均为lei ，那么 find 就会执行：
+    chown lei {}
+
+它会被解析为chown lei test1.txt和chown lei test2.txt.
+
+如果我们想将搜索到的&quot;.c&quot;文件进行拼接后写入一个文件，我们可以进行以下操作:
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -<span class="built_in">type</span> f -name <span class="string">"*.c"</span> -<span class="built_in">exec</span> &#123;&#125; \;&gt;all_c.txt</div></pre></td></tr></table></figure>
+
+
+如果我们想要以特定的形式输出匹配到的文件，我们可以使-exec结合printf来使用：
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ls </div><div class="line">file.txt  test.txt</div><div class="line">$ find -<span class="built_in">type</span> f -name <span class="string">"*.txt"</span> -<span class="built_in">exec</span> <span class="built_in">printf</span> <span class="string">"Text file : %s\n"</span> &#123;&#125; \;</div><div class="line">Text file : ./file.txt</div><div class="line">Text file : ./test.txt</div></pre></td></tr></table></figure>
+
+
+从上面例子我们可以看出：**-exec之后可以接任何命令，{}表示一个匹配。对于任何匹配的文件名，{}均会被该文件名所替换。**
+
+在上面的例子中，-exec都是结合一个命令。**那么，如何想要结合多个命令，我们应该怎么办呢？**事实上，**-exec并不支持直接使用多个命令，**但我们可以将需要执行的命令写入一个shell脚本中，然后在-exec中使用这个脚本：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-<span class="built_in">exec</span> ./test.sh &#123;&#125; \;</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><h3 id="find跳过特定目录-prune"><a href="#find跳过特定目录-prune" class="headerlink" title="find跳过特定目录(-prune)"></a>find跳过特定目录(-prune)</h3><p>  使用find进行搜索时，很多时候会搜索一些不必要的目录，这样就降低了效率，我们可以使用<strong>-prune</strong>来跳过特定的目录。操作方法如下：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -maxdepth 1 \( -name <span class="string">".vim"</span> -prune \) -o \( -<span class="built_in">type</span> d \)</div></pre></td></tr></table></figure>
+<p>  以上命令打印出当前目录下(不向下继续搜索)不包括.vim的所有目录。</p>
+<p>  <strong>\( -name “.vim” -prune \)的作用是用于进行排除，它指明了.vim目录应该被排除在外，而\( -type d \)指明了需要执行的动作。这些动作需要被放置在第二个语句块中。</strong></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/25/shell总结（一）/" rel="next" title="shell总结（一">
+                <i class="fa fa-chevron-left"></i> shell总结（一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/25/VLAN/" rel="prev" title="VLAN">
+                VLAN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/th.jpg"
+               alt="Lhx" />
+          <p class="site-author-name" itemprop="name">Lhx</p>
+           
+              <p class="site-description motion-element" itemprop="description">你必须很努力 才能看上去毫不费力</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat简介"><span class="nav-number">1.</span> <span class="nav-text">cat简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#录制并回放终端回话"><span class="nav-number">2.</span> <span class="nav-text">录制并回放终端回话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件查找-find命令"><span class="nav-number">3.</span> <span class="nav-text">文件查找(find命令)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列出当前目录及子目录下所有的文件和文件夹"><span class="nav-number">3.1.</span> <span class="nav-text">列出当前目录及子目录下所有的文件和文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据文件名或正则表达式进行搜索-i-name-、-regex"><span class="nav-number">3.2.</span> <span class="nav-text">根据文件名或正则表达式进行搜索(-(i)name 、-regex)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#否定参数"><span class="nav-number">3.3.</span> <span class="nav-text">否定参数(!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录深度的搜索-maxdepth-、-mindepth"><span class="nav-number">3.4.</span> <span class="nav-text">目录深度的搜索(-maxdepth 、-mindepth)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据文件类型搜索-type"><span class="nav-number">3.5.</span> <span class="nav-text">根据文件类型搜索(-type)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据文件时间进行搜索"><span class="nav-number">3.6.</span> <span class="nav-text">根据文件时间进行搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据文件大小搜索-size"><span class="nav-number">3.7.</span> <span class="nav-text">根据文件大小搜索(-size)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除匹配的文件-delete"><span class="nav-number">3.8.</span> <span class="nav-text">删除匹配的文件(-delete)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据文件权限和用户搜索-perm、-user"><span class="nav-number">3.9.</span> <span class="nav-text">根据文件权限和用户搜索(-perm、-user)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用find执行命令-exec"><span class="nav-number">3.10.</span> <span class="nav-text">利用find执行命令(-exec)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find跳过特定目录-prune"><span class="nav-number">3.11.</span> <span class="nav-text">find跳过特定目录(-prune)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhx</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Vgjv1AOMVKMkD6b4EaAIbeLo-gzGzoHsz", "wjFnf9XvYJhS7AYpT1iqXoxP");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
