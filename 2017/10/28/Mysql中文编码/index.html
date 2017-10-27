@@ -94,23 +94,23 @@
 
 
 
-<meta name="description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta name="description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql">
 <meta property="og:url" content="http://yoursite.com/2017/10/28/Mysql中文编码/index.html">
 <meta property="og:site_name" content="Lhx&#39;blog">
-<meta property="og:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta property="og:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png">
 <meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/21cb83b833016152d5f0dec6ee0c7c29.png">
 <meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/18cc52c5c7f76532bfffc1929ab1c68a.png">
 <meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/ea3363c75e461973d9904910fdc88aca.png">
 <meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/232b603c62b7253eeffc1f1349dd44fe.png">
-<meta property="og:updated_time" content="2017-10-27T17:50:00.886Z">
+<meta property="og:updated_time" content="2017-10-27T18:08:40.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql">
-<meta name="twitter:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta name="twitter:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
 <meta name="twitter:image" content="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png">
 
 
@@ -403,6 +403,8 @@
 <p>这种问题不可忍受！！于是我就开始了我的百度之旅：</p>
 <p>最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址：</p>
 <p><a href="http://www.cnblogs.com/livingintruth/p/3433259.html" target="_blank" rel="external">http://www.cnblogs.com/livingintruth/p/3433259.html</a></p>
+<p>参考视频:</p>
+<p><a href="http://video.tudou.com/v/XMjEzOTMwODc4NA==.html" target="_blank" rel="external">http://video.tudou.com/v/XMjEzOTMwODc4NA==.html</a></p>
 <h3 id="方法一：在创建表时，在表的最后添加character-set-utf8"><a href="#方法一：在创建表时，在表的最后添加character-set-utf8" class="headerlink" title="方法一：在创建表时，在表的最后添加character set = utf8"></a>方法一：在创建表时，在表的最后添加<code>character set = utf8</code></h3><p>如图：</p>
 <p><img src="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png" alt=""></p>
 <p>之后插入一组数据：</p>
@@ -446,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/25/VLAN/" rel="next" title="VLAN">
-                <i class="fa fa-chevron-left"></i> VLAN
+              <a href="/2017/10/25/Git/" rel="next" title="Git">
+                <i class="fa fa-chevron-left"></i> Git
               </a>
             
           </div>
