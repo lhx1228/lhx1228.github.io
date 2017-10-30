@@ -94,24 +94,18 @@
 
 
 
-<meta name="description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
+<meta name="description" content="C语言操作mysql数据库(ubuntu环境) 相关函数介绍：   例子（查看某个表的信息）：  先做一些准备：  创建一个数据库testmysql&amp;gt; create database test;  创建表childrenmysql&amp;gt; create table children(childno int(4),fname text,age int(3))character set = ut">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql">
-<meta property="og:url" content="http://yoursite.com/2017/10/28/Mysql中文编码/index.html">
+<meta property="og:title" content="Mysql与C语言">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/C语言操作mysql数据库(ubuntu环境)/index.html">
 <meta property="og:site_name" content="Lhx&#39;blog">
-<meta property="og:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
+<meta property="og:description" content="C语言操作mysql数据库(ubuntu环境) 相关函数介绍：   例子（查看某个表的信息）：  先做一些准备：  创建一个数据库testmysql&amp;gt; create database test;  创建表childrenmysql&amp;gt; create table children(childno int(4),fname text,age int(3))character set = ut">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png">
-<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/21cb83b833016152d5f0dec6ee0c7c29.png">
-<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/18cc52c5c7f76532bfffc1929ab1c68a.png">
-<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/ea3363c75e461973d9904910fdc88aca.png">
-<meta property="og:image" content="http://119.29.89.242/wp-content/uploads/2017/10/232b603c62b7253eeffc1f1349dd44fe.png">
-<meta property="og:updated_time" content="2017-10-27T18:08:40.191Z">
+<meta property="og:updated_time" content="2017-10-30T13:25:18.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql">
-<meta name="twitter:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 参考">
-<meta name="twitter:image" content="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png">
+<meta name="twitter:title" content="Mysql与C语言">
+<meta name="twitter:description" content="C语言操作mysql数据库(ubuntu环境) 相关函数介绍：   例子（查看某个表的信息）：  先做一些准备：  创建一个数据库testmysql&amp;gt; create database test;  创建表childrenmysql&amp;gt; create table children(childno int(4),fname text,age int(3))character set = ut">
 
 
 
@@ -140,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/28/Mysql中文编码/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/30/C语言操作mysql数据库(ubuntu环境)/"/>
 
 
 
 
 
-  <title>Mysql | Lhx'blog</title>
+  <title>Mysql与C语言 | Lhx'blog</title>
   
 
 
@@ -299,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/Mysql中文编码/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/30/C语言操作mysql数据库(ubuntu环境)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lhx">
@@ -316,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mysql</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql与C语言</h1>
         
 
         <div class="post-meta">
@@ -328,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T00:00:00+08:00">
-                2017-10-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T00:00:00+08:00">
+                2017-10-30
               </time>
             
 
@@ -368,7 +362,7 @@
 
           
           
-             <span id="/2017/10/28/Mysql中文编码/" class="leancloud_visitors" data-flag-title="Mysql">
+             <span id="/2017/10/30/C语言操作mysql数据库(ubuntu环境)/" class="leancloud_visitors" data-flag-title="Mysql与C语言">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -399,25 +393,25 @@
       
 
       
-        <h2 id="ubuntu环境下解决中文乱码问题"><a href="#ubuntu环境下解决中文乱码问题" class="headerlink" title="ubuntu环境下解决中文乱码问题"></a>ubuntu环境下解决中文乱码问题</h2><p>上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What? </p>
-<p>这种问题不可忍受！！于是我就开始了我的百度之旅：</p>
-<p>最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址：</p>
-<p><a href="http://www.cnblogs.com/livingintruth/p/3433259.html" target="_blank" rel="external">http://www.cnblogs.com/livingintruth/p/3433259.html</a></p>
-<p>参考视频:</p>
-<p><a href="http://video.tudou.com/v/XMjEzOTMwODc4NA==.html" target="_blank" rel="external">http://video.tudou.com/v/XMjEzOTMwODc4NA==.html</a></p>
-<h3 id="方法一：在创建表时，在表的最后添加character-set-utf8"><a href="#方法一：在创建表时，在表的最后添加character-set-utf8" class="headerlink" title="方法一：在创建表时，在表的最后添加character set = utf8"></a>方法一：在创建表时，在表的最后添加<code>character set = utf8</code></h3><p>如图：</p>
-<p><img src="http://119.29.89.242/wp-content/uploads/2017/10/42f4ed19a29473980ee8455e644e8aa1.png" alt=""></p>
-<p>之后插入一组数据：</p>
-<p><img src="http://119.29.89.242/wp-content/uploads/2017/10/21cb83b833016152d5f0dec6ee0c7c29.png" alt=""></p>
-<p>查看结果：</p>
-<p><img src="http://119.29.89.242/wp-content/uploads/2017/10/18cc52c5c7f76532bfffc1929ab1c68a.png" alt=""></p>
-<h3 id="方法二：创建表之后，手动输入alter-table-table-name-convert-to-character-set-utf8"><a href="#方法二：创建表之后，手动输入alter-table-table-name-convert-to-character-set-utf8" class="headerlink" title="方法二：创建表之后，手动输入alter table table_name convert to character set utf8;"></a>方法二：创建表之后，手动输入<code>alter table table_name convert to character set utf8;</code></h3><p>如图为创建表并输入<code>alter table table_name convert to character set utf8;</code>:</p>
-<p><img src="http://119.29.89.242/wp-content/uploads/2017/10/ea3363c75e461973d9904910fdc88aca.png" alt=""></p>
-<p>之后插入数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert a values(&apos;雷&apos;);</div></pre></td></tr></table></figure>
-<p>显示结果：</p>
-<p><img src="http://119.29.89.242/wp-content/uploads/2017/10/232b603c62b7253eeffc1f1349dd44fe.png" alt=""></p>
-<p>好了，这就是我找到的解决方法，如果有更好的方法，希望大佬指点~</p>
+        <h2 id="C语言操作mysql数据库-ubuntu环境"><a href="#C语言操作mysql数据库-ubuntu环境" class="headerlink" title="C语言操作mysql数据库(ubuntu环境)"></a>C语言操作mysql数据库(ubuntu环境)</h2><ul>
+<li>相关函数介绍：</li>
+</ul>
+<ul>
+<li>例子（查看某个表的信息）：</li>
+</ul>
+<p>先做一些准备：</p>
+<ul>
+<li><p>创建一个数据库test<code>mysql&gt; create database test;</code></p>
+</li>
+<li><p>创建表children<code>mysql&gt; create table children(childno int(4),fname text,age int(3))character set = utf8;</code></p>
+</li>
+<li><p>插入数据<code>insert children values(&#39;1&#39;,&#39;Jenny&#39;,&#39;21&#39;);</code></p>
+</li>
+</ul>
+<p>C代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mysql.h&gt;</span></span></div><div class="line"></div><div class="line">MYSQL *mysql_main;</div><div class="line">MYSQL_RES *res_ptr;</div><div class="line">MYSQL_ROW sqlrow;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_header</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_row</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">int</span> res;</div><div class="line">    <span class="keyword">int</span> first_row = <span class="number">1</span>;</div><div class="line"></div><div class="line">    mysql_main = mysql_init(<span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!mysql_main)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"mysql_init failed\n"</span>);</div><div class="line">        <span class="keyword">return</span> EXIT_FAILURE;</div><div class="line">    &#125;</div><div class="line">    mysql_main = mysql_real_connect(mysql_main,<span class="string">"localhost"</span>,<span class="string">"test"</span>,<span class="string">"test"</span>,<span class="string">"test"</span>,<span class="number">0</span>,<span class="literal">NULL</span>,<span class="number">0</span>);</div><div class="line">    ##三个test分别为用户名，密码，需要查询的表的名称</div><div class="line">    <span class="keyword">if</span>(mysql_main)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Connection success:\n"</span>);</div><div class="line">        res = mysql_query(mysql_main,<span class="string">"SELECT childno,fname,age FROM children WHERE age&gt;5"</span>);</div><div class="line">        <span class="keyword">if</span>(res)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"SELECT error: %s\n"</span>,mysql_error(mysql_main));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            res_ptr = mysql_use_result(mysql_main);</div><div class="line">            <span class="keyword">if</span>(res_ptr)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">while</span>((sqlrow = mysql_fetch_row(res_ptr)))</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">if</span>(first_row)</div><div class="line">                    &#123;</div><div class="line">                        display_header();</div><div class="line">                        first_row = <span class="number">0</span>;</div><div class="line">                    &#125;</div><div class="line">                    display_row();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Connection failed\n"</span>);</div><div class="line">    &#125;</div><div class="line">    mysql_close(mysql_main);</div><div class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_header</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    MYSQL_FIELD *field_ptr;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Column details:\n"</span>);</div><div class="line">    <span class="keyword">while</span>((field_ptr = mysql_fetch_field(res_ptr))!=<span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\t Name: %s\n"</span>,field_ptr-&gt;name);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\t Type: "</span>);</div><div class="line">        <span class="keyword">if</span>(IS_NUM(field_ptr-&gt;type))</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"Numeric filed\n"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">switch</span>(field_ptr-&gt;type)</div><div class="line">            &#123;</div><div class="line">            <span class="keyword">case</span> FIELD_TYPE_VAR_STRING:</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"VARCHAR\n"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> FIELD_TYPE_LONG:</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"LONG\n"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"Type is %d,check in mysql_com.h\n"</span>,field_ptr-&gt;type);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\t MAX width %ld\n"</span>,field_ptr-&gt;length);</div><div class="line">        <span class="keyword">if</span>(field_ptr-&gt;flags&amp;AUTO_INCREMENT_FLAG)</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"\t Auto increments\n"</span>);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_row</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field_count;</div><div class="line"></div><div class="line">    field_count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(field_count&lt;mysql_field_count(mysql_main))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(sqlrow[field_count]) <span class="built_in">printf</span>(<span class="string">"%s "</span>,sqlrow[field_count]);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"NULL"</span>);</div><div class="line">        field_count++;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Connection success:</div><div class="line">Column details:</div><div class="line">	 Name: childno</div><div class="line">	 Type: Numeric filed</div><div class="line">	 MAX width 4</div><div class="line"></div><div class="line">	 Name: fname</div><div class="line">	 Type: Type is 252,check in mysql_com.h</div><div class="line">	 MAX width 65535</div><div class="line"></div><div class="line">	 Name: age</div><div class="line">	 Type: Numeric filed</div><div class="line">	 MAX width 3</div><div class="line"></div><div class="line">1 Jenny 21</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -448,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/25/VLAN/" rel="next" title="VLAN">
-                <i class="fa fa-chevron-left"></i> VLAN
+              <a href="/2017/10/28/Mysql中文编码/" rel="next" title="Mysql">
+                <i class="fa fa-chevron-left"></i> Mysql
               </a>
             
           </div>
@@ -457,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/30/C语言操作mysql数据库(ubuntu环境)/" rel="prev" title="Mysql与C语言">
-                Mysql与C语言 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu环境下解决中文乱码问题"><span class="nav-number">1.</span> <span class="nav-text">ubuntu环境下解决中文乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：在创建表时，在表的最后添加character-set-utf8"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：在创建表时，在表的最后添加character set = utf8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：创建表之后，手动输入alter-table-table-name-convert-to-character-set-utf8"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：创建表之后，手动输入alter table table_name convert to character set utf8;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言操作mysql数据库-ubuntu环境"><span class="nav-number">1.</span> <span class="nav-text">C语言操作mysql数据库(ubuntu环境)</span></a></li></ol></div>
             
 
           </div>
