@@ -104,19 +104,19 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本1.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本2.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本3.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本4.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本5.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本7.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本8.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本9.png">
-<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本10.png">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本3.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本4.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本5.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本7.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本8.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本9.PNG">
+<meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本10.PNG">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本11.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本12.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本13.png">
-<meta property="og:updated_time" content="2017-11-02T13:46:01.581Z">
+<meta property="og:updated_time" content="2017-11-02T14:05:17.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux、windows开关机执行脚本">
 <meta name="twitter:description" content="linux开关机执行脚本前段时间，突发奇想，想到服务器如果异常关机，如何判断呢？如何判断服务器是认为关机还是非正常关机（停电、服务器故障等）呢？于是我在网上查阅了资料，了解了一些linux开关时的过程。 linux开关机过程先通过一张图来简单了解下整个系统启动的流程，整个过程基本可以分为POST–&amp;gt;BIOS–&amp;gt;MBR(GRUB)–&amp;gt;Kernel–&amp;gt;Init–&amp;gt;Runl">
@@ -474,7 +474,7 @@
 <li>Run level 6 – /etc/rc.d/rc6.d/</li>
 </ul>
 <p>　　这些目录下的脚本只有K<em>和S</em>开头的文件，K开头的文件为开机需要执行关闭的服务，S开头的文件为开机需要执行开启的服务。<br>　　<br>参考资料：<br><a href="http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html</a><br><a href="http://blog.csdn.net/miss_acha/article/details/50004717" target="_blank" rel="external">http://blog.csdn.net/miss_acha/article/details/50004717</a><br><a href="http://www.cnblogs.com/codecc/p/boot.html" target="_blank" rel="external">http://www.cnblogs.com/codecc/p/boot.html</a><br><a href="http://fity.cn/post/30.html" target="_blank" rel="external">http://fity.cn/post/30.html</a></p>
-<h3 id="linux开机执行脚本"><a href="#linux开机执行脚本" class="headerlink" title="linux开机执行脚本"></a><strong>linux开机执行脚本</strong></h3><p><strong>linux开机执行脚本有四种方法：</strong><br>1.把想要执行的脚本放在/etc/rc.local中，假如要执行的脚本名为test.sh,结果如下图：<br><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本3.png" alt=""></p>
+<h3 id="linux开机执行脚本"><a href="#linux开机执行脚本" class="headerlink" title="linux开机执行脚本"></a><strong>linux开机执行脚本</strong></h3><p><strong>linux开机执行脚本有四种方法：</strong><br>1.把想要执行的脚本放在/etc/rc.local中，假如要执行的脚本名为test.sh,结果如下图：<br><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本3.PNG" alt=""></p>
 <p>2.使用crontab 来实现开机执行脚本。</p>
 <p>crontab 为linux下一个配置定时任务的命令，下面会有它的详细介绍，现在我们来说一下如何使用它来实现开机执行脚本：</p>
 <pre><code>我们在终端输入：crontab -e,然后再末尾加入:
@@ -492,7 +492,7 @@
 ln -s ../init.d/test.sh /etc/rc2.d/S01test
 </code></pre><p>4.使用linux内置软件.</p>
 <p>在终端输入:gnome-session-properties,会弹出下图所示窗口：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本4.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本4.PNG" alt=""></p>
 <p>之后点击添加，在命令一栏中放入想要执行的脚本的位置，名称和注释随便添，之后点击添加就完成了。</p>
 <h3 id="linux关机执行脚本"><a href="#linux关机执行脚本" class="headerlink" title="linux关机执行脚本"></a><strong>linux关机执行脚本</strong></h3><p>最初在网上查阅资料，<strong>在/etc/init.d目录中，放入脚本，然后建立软连接到/etc/rc0.d、/etc/rc6.d目录中，</strong>命令如下:</p>
 <pre><code>sudo vi test.sh
@@ -500,31 +500,31 @@ sudo chmod +x test.sh
 sudo ln -s ../init.d/test.sh /etc/rc0.d/K10test
 sudo ln -s ../init.d/test.sh /etc/rc6.d/K10test 
 </code></pre><p> 下图为建立软链接之后：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本5.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本5.PNG" alt=""></p>
 <p>/etc/rc0.d目录下为关机时会执行的脚本，而/etc/rc6.d目录下为重启时会执行的脚本。而K表示关机时会执行，S表示开机时会执行。</p>
 <p>   其中，test.sh脚本的内容为:</p>
 <pre><code>echo $(date) &gt;&gt; /home/lei/log
 </code></pre><p> 即开机时在/home/lei下的log文件下记录关机时的时间。</p>
 <p> 目录/home/lei下原来的文件如下：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.PNG" alt=""></p>
 <p>但是关机重启之后，脚本并没有执行。如下：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本6.PNG" alt=""></p>
 <p>这是为什么呢？</p>
 <p><strong>查阅资料后发现，需要在/var/lock/subsys/目录下放入一个空的，名称为脚本的名称的一个文件，</strong>例如：</p>
 <p>目录/etc/init.d目录下的脚本名称为test.sh,则应在/var/lock/subsys目录下放入一个0字节的名称为test的文件。命令如下：</p>
 <pre><code>sudo touch /var/lock/subsys/test
-</code></pre><p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本7.png" alt=""></p>
+</code></pre><p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本7.PNG" alt=""></p>
 <p>但这样做之后，发现重新启动之后，脚本还是没有执行。那这又是为什么呢？</p>
 <p><strong>之后我做了个测试，单独在/var/lock/subsys目录下放入一个文件，重启之后发现，该文件消失了。</strong>如下图:</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本8.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本8.PNG" alt=""></p>
 <p><strong>文章前面提到过，在目录/etc/rc.local下放入相应的脚本，该脚本会在开机时执行。于是，我们这样做：在/etc/rc.local目录下放入一个脚本，脚本的作用为开机时在/var/lock/subsys下创建一个0字节的与需要关机执行的脚本名称相同的一个文件，</strong>命令如下：</p>
 <pre><code>sudo vi /etc/rc.local
 
 在最后加入touch /var/lock/subsys/test
 </code></pre><p>结果如图：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本9.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本9.PNG" alt=""></p>
 <p>至此，我们重启后发现，脚本顺利执行了，哇，终于成功了。 如下图：</p>
-<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本10.png" alt=""></p>
+<p><img src="http://oyqvoohpw.bkt.clouddn.com/linux、windows开关机执行脚本10.PNG" alt=""></p>
 <h2 id="windows开机执行脚本"><a href="#windows开机执行脚本" class="headerlink" title="windows开机执行脚本"></a><strong>windows开机执行脚本</strong></h2><p>很多时候，我们在开机时需要打开一系列固定的应用，例如：QQ，office等。但每次开机都手动的打开这些应用，未免太麻烦了。那有没有什么办法来开机自启这些应用呢？下面来介绍方法：</p>
 <ul>
 <li><p><strong>我们可以使用Notepad++来创建一个.bat文件，在其中写入命令，然后将其放入windows下的启动目录中。</strong></p>
