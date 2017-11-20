@@ -94,23 +94,23 @@
 
 
 
-<meta name="description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta name="description" content="Mysql中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法一：在创建表">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql中文乱码问题">
 <meta property="og:url" content="http://yoursite.com/2017/10/28/Mysql中文编码/index.html">
 <meta property="og:site_name" content="Lhx&#39;blog">
-<meta property="og:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta property="og:description" content="Mysql中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法一：在创建表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题1.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题2.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题3.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题4.png">
 <meta property="og:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题5.png">
-<meta property="og:updated_time" content="2017-11-02T15:01:06.735Z">
+<meta property="og:updated_time" content="2017-11-20T14:39:34.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql中文乱码问题">
-<meta name="twitter:description" content="ubuntu环境下解决中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法">
+<meta name="twitter:description" content="Mysql中文乱码问题上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What?  这种问题不可忍受！！于是我就开始了我的百度之旅： 最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址： http://www.cnblogs.com/livingintruth/p/3433259.html 方法一：在创建表">
 <meta name="twitter:image" content="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题1.png">
 
 
@@ -399,7 +399,7 @@
       
 
       
-        <h2 id="ubuntu环境下解决中文乱码问题"><a href="#ubuntu环境下解决中文乱码问题" class="headerlink" title="ubuntu环境下解决中文乱码问题"></a>ubuntu环境下解决中文乱码问题</h2><p>上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What? </p>
+        <h2 id="Mysql中文乱码问题"><a href="#Mysql中文乱码问题" class="headerlink" title="Mysql中文乱码问题"></a>Mysql中文乱码问题</h2><p>上数据库实验课上，突然发现插入到数据库中的数据只能是字母和数字，不能是中文。What? </p>
 <p>这种问题不可忍受！！于是我就开始了我的百度之旅：</p>
 <p>最初的说法都是通过修改配置文件来完成，可是实践之后发现根本不管用，最终通过大佬的博客找到了解决方法，详情见以下网址：</p>
 <p><a href="http://www.cnblogs.com/livingintruth/p/3433259.html" target="_blank" rel="external">http://www.cnblogs.com/livingintruth/p/3433259.html</a></p>
@@ -415,6 +415,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into test2(num,fname,age) values(1,&apos; 雷&apos;,18),(2,&apos;任&apos;,19);</div></pre></td></tr></table></figure>
 <p>显示结果：</p>
 <p><img src="http://oyqvoohpw.bkt.clouddn.com/Mysql中文乱码问题5.png" alt=""></p>
+<h3 id="方法三：修改-etc-my-cnf-centos环境"><a href="#方法三：修改-etc-my-cnf-centos环境" class="headerlink" title="方法三：修改/etc/my.cnf(centos环境)"></a>方法三：修改/etc/my.cnf(centos环境)</h3><p><strong>使用以上方法一段时间后，发现我在备份数据库的时候，还是会发生乱码问题，那应该怎么解决呢？</strong><br>我的方法是将<strong>/etc/my.cnf</strong>文件的内容修改为以下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">datadir=/var/lib/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line">user=mysql</div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line">character-set-server=utf8</div><div class="line">init_connect=&apos;SET NAMES utf8&apos;</div><div class="line"></div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">[client]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">[mysql]</div><div class="line">no-auto-rehash</div><div class="line">default-character-set=utf8</div></pre></td></tr></table></figure>
 <p>好了，这就是我找到的解决方法，如果有更好的方法，希望大佬指点~</p>
 
       
@@ -446,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/25/VLAN/" rel="next" title="VLAN">
-                <i class="fa fa-chevron-left"></i> VLAN
+              <a href="/2017/10/25/Shell命令日常总结/" rel="next" title="Shell命令日常总结(观Unix后)">
+                <i class="fa fa-chevron-left"></i> Shell命令日常总结(观Unix后)
               </a>
             
           </div>
@@ -592,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu环境下解决中文乱码问题"><span class="nav-number">1.</span> <span class="nav-text">ubuntu环境下解决中文乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：在创建表时，在表的最后添加character-set-utf8"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：在创建表时，在表的最后添加character set = utf8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：创建表之后，手动输入alter-table-table-name-convert-to-character-set-utf8"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：创建表之后，手动输入alter table table_name convert to character set utf8;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql中文乱码问题"><span class="nav-number">1.</span> <span class="nav-text">Mysql中文乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：在创建表时，在表的最后添加character-set-utf8"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：在创建表时，在表的最后添加character set = utf8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：创建表之后，手动输入alter-table-table-name-convert-to-character-set-utf8"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：创建表之后，手动输入alter table table_name convert to character set utf8;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法三：修改-etc-my-cnf-centos环境"><span class="nav-number">1.3.</span> <span class="nav-text">方法三：修改/etc/my.cnf(centos环境)</span></a></li></ol></li></ol></div>
             
 
           </div>
