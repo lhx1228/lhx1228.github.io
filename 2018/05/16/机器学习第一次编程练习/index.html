@@ -102,12 +102,12 @@
 <meta property="og:site_name" content="Lhx&#39;blog">
 <meta property="og:description" content="机器学习第一次编程练习 遇到的问题梯度下降在实现梯度下降时，最初实现的方式是类似于这样： 12345for iter = 1:num_iters     theta(1) = theta(1) - alpha / m * sum(X * theta_s - y);          theta(2) = theta(2) - alpha / m * sum((X * theta_s - y) .*">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://119.29.89.242/image/Machine-Learning_1.png">
-<meta property="og:updated_time" content="2018-05-16T04:43:18.448Z">
+<meta property="og:image" content="https://119.29.89.242/image/Machine-Learning_1.png">
+<meta property="og:updated_time" content="2020-02-16T13:08:35.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习第一次编程练习">
 <meta name="twitter:description" content="机器学习第一次编程练习 遇到的问题梯度下降在实现梯度下降时，最初实现的方式是类似于这样： 12345for iter = 1:num_iters     theta(1) = theta(1) - alpha / m * sum(X * theta_s - y);          theta(2) = theta(2) - alpha / m * sum((X * theta_s - y) .*">
-<meta name="twitter:image" content="http://119.29.89.242/image/Machine-Learning_1.png">
+<meta name="twitter:image" content="https://119.29.89.242/image/Machine-Learning_1.png">
 
 
 
@@ -412,7 +412,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">340412.65957</div><div class="line">110631.05028</div><div class="line"> -6649.47427</div><div class="line"> </div><div class="line">340412.65957</div><div class="line">110631.05028</div><div class="line"> -6649.47427</div></pre></td></tr></table></figure>
 <p>结果与正规方程算出的相同。</p>
 <h3 id="多元线性回归预测结果不同"><a href="#多元线性回归预测结果不同" class="headerlink" title="多元线性回归预测结果不同"></a>多元线性回归预测结果不同</h3><p>在多元线性回归问题中，我根据梯度下降和正规方程两种方法算出来theta值，可是最后两种方法预测出的结果不同，如下图：</p>
-<p><img src="http://119.29.89.242/image/Machine-Learning_1.png" alt=""></p>
+<p><img src="https://119.29.89.242/image/Machine-Learning_1.png" alt=""></p>
 <p>这是什么原因呢？</p>
 <p>原来在<strong>梯度下降方法中我使用了特征缩放，而在预测结果是，我所输入的数据并没有缩放，</strong>所以导致预测出来的结果较大。</p>
 <p>更改方法为将<strong>需要进行预测的数据按照特征缩放的比例缩小。</strong>例如需要测试的数据为<code>[1 1650 3]</code>，我们可以将它更改为<code>[1 (1650 - mu(1)) ./ sigma(1) (3 - mu(2)) ./ sigma(2)]</code>。 其中<strong>mu为X的平均值，sigma为X的标准差。</strong></p>
@@ -457,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/12/树莓派安装Raspbian系统(MAC环境下)/" rel="prev" title="树莓派安装Raspbian系统(MAC环境下)">
-                树莓派安装Raspbian系统(MAC环境下) <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/12/树莓派上安装opencv/" rel="prev" title="树莓派上安装opencv">
+                树莓派上安装opencv <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
