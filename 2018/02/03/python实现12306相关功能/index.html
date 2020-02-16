@@ -102,15 +102,15 @@
 <meta property="og:site_name" content="Lhx&#39;blog">
 <meta property="og:description" content="做一个更适合自己的12306 测试环境python 3.6 代码功能① 查询所有有剩余车票的列车以及可以选择的座位类型 ② 输入时间范围，筛选出可以乘坐的列车 前期准备我们进入12306的车票预定页面点击这里,按下F12(我这里使用的是Chrome浏览器),输入出发地，目的地等信息后，会在开发者工具中看到一个这样的信息:  之后我们点击queryZ?…文件，查看Headers信息，复制Reques">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://119.29.89.242/image/12306-1.PNG">
-<meta property="og:image" content="https://119.29.89.242/image/12306-2.PNG">
-<meta property="og:image" content="https://119.29.89.242/image/12306-3.PNG">
-<meta property="og:image" content="https://119.29.89.242/image/12306-4.PNG">
-<meta property="og:updated_time" content="2020-02-16T16:30:44.864Z">
+<meta property="og:image" content="https://leihx.top/image/12306-1.PNG">
+<meta property="og:image" content="https://leihx.top/image/12306-2.PNG">
+<meta property="og:image" content="https://leihx.top/image/12306-3.PNG">
+<meta property="og:image" content="https://leihx.top/image/12306-4.PNG">
+<meta property="og:updated_time" content="2020-02-16T16:36:44.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python实现12306相关功能">
 <meta name="twitter:description" content="做一个更适合自己的12306 测试环境python 3.6 代码功能① 查询所有有剩余车票的列车以及可以选择的座位类型 ② 输入时间范围，筛选出可以乘坐的列车 前期准备我们进入12306的车票预定页面点击这里,按下F12(我这里使用的是Chrome浏览器),输入出发地，目的地等信息后，会在开发者工具中看到一个这样的信息:  之后我们点击queryZ?…文件，查看Headers信息，复制Reques">
-<meta name="twitter:image" content="https://119.29.89.242/image/12306-1.PNG">
+<meta name="twitter:image" content="https://leihx.top/image/12306-1.PNG">
 
 
 
@@ -403,9 +403,9 @@
 <h2 id="代码功能"><a href="#代码功能" class="headerlink" title="代码功能"></a>代码功能</h2><p>① 查询所有有剩余车票的列车以及可以选择的座位类型</p>
 <p>② 输入时间范围，筛选出可以乘坐的列车</p>
 <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>我们进入<strong>12306的车票预定页面</strong><a href="https://kyfw.12306.cn/otn/leftTicket/init" target="_blank" rel="external">点击这里</a>,按下F12(我这里使用的是Chrome浏览器),输入出发地，目的地等信息后，会在开发者工具中看到一个这样的信息:</p>
-<p><img src="https://119.29.89.242/image/12306-1.PNG" alt=""></p>
+<p><img src="https://leihx.top/image/12306-1.PNG" alt=""></p>
 <p>之后我们点击<strong>queryZ?…</strong>文件，查看<strong>Headers</strong>信息，复制<strong>Request URL</strong>里面的链接，在浏览器中打开，出现下图的画面:</p>
-<p><img src="https://119.29.89.242/image/12306-2.PNG" alt=""></p>
+<p><img src="https://leihx.top/image/12306-2.PNG" alt=""></p>
 <h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><p>根据上图，我们发现有一个字段为<strong>data</strong>，而<strong>data</strong>中又有<strong>map、result等</strong>。不难发现，<strong>map指的是我们输入的出发地和目的地；</strong> <strong>result是符合条件的全部列车班次。</strong></p>
 <p>我们以其中一个班次为例：<strong>VdJ3y1kMfVPLUzMR7lZ43Pwe%2FD6mV2irnkO%2BO8QcEPd4ErXyDUUYG0V49nmwGdVhLlBRZ%2B6ofYIo%0A7JL9OVXnvvXSeFut9EIdvTgpphWYDGswQh6MwfxVgOiDygJd1f4iREQq4zYj8Ztwnhk5xHGbB6Km%0Annk93ZQYKhhYcVXLSVAkqoZ25IaY4qdKevsBNsJVrOn1nR9WVyN3Uv2CFPk5uGPKApEh8544J7SF%0Ay1kct4P9pUvhTprLrLHjhWX1B1A%2BTfsMkg%3D%3D|预订|240000K18333|K183|BJP|NFF|BJP|AYF|13:06|21:15|08:09|Y|2EHmn1ZE9c%2BPwxtZJ10%2FO0QlrjwwNJybcXPjn%2BayDKlBYKYKeZts0%2B6ZU%2FY%3D|20180203|3|PA|01|07|0|0||||7|||有||6|无|||||10401030|1413|0</strong></p>
 <p>分析这个字段，发现<strong>预订|240000K18333|K183|BJP|NFF|BJP|AYF|13:06|21:15|08:09|Y|2EHmn1ZE9c%2BPwxtZJ10%2FO0QlrjwwNJybcXPjn%2BayDKlBYKYKeZts0%2B6ZU%2FY%3D|20180203|3|PA|01|07|0|0||||7|||有||6|无|||||10401030|1413|0</strong>为有效信息。</p>
@@ -416,8 +416,8 @@
 <p>容易发现<strong>leftTicketDTO.train_date</strong>字段为我们选择的日期，<strong>leftTicketDTO.from_station</strong>字段为我们的出发地，<strong>leftTicketDTO.to_station</strong>字段为目的地，所以我们可以用一个字典存入地点的中文名称和缩写，然后使用”url = ‘<a href="http://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date={}&amp;leftTicketDTO.from_station={}&amp;leftTicketDTO.to_station={}&amp;purpose_codes=ADULT&#39;.format(time,from_where,to_where" target="_blank" rel="external">http://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date={}&amp;leftTicketDTO.from_station={}&amp;leftTicketDTO.to_station={}&amp;purpose_codes=ADULT&#39;.format(time,from_where,to_where</a>)” 来表示url，之后使用requests模块来实现一系列的操作。</p>
 <p>具体实现过程请参考<a href="https://github.com/lhx1228/12306-program/blob/master/12306.py" target="_blank" rel="external">12306.py</a>代码。</p>
 <p>而<a href="https://github.com/lhx1228/12306-program/blob/master/sendmail_12306.py" target="_blank" rel="external">sendmail-12306.py</a>为发送邮件的代码，可以用来自动检测，如果有余票，会自动给邮箱发邮件。</p>
-<h2 id="代码截图"><a href="#代码截图" class="headerlink" title="代码截图"></a>代码截图</h2><p><img src="https://119.29.89.242/image/12306-3.PNG" alt=""></p>
-<p><img src="https://119.29.89.242/image/12306-4.PNG" alt=""></p>
+<h2 id="代码截图"><a href="#代码截图" class="headerlink" title="代码截图"></a>代码截图</h2><p><img src="https://leihx.top/image/12306-3.PNG" alt=""></p>
+<p><img src="https://leihx.top/image/12306-4.PNG" alt=""></p>
 <h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p><a href="https://github.com/lhx1228/12306-program" target="_blank" rel="external">12306-program</a></p>
 
       
@@ -449,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/06/bash快捷键/" rel="next" title="bash快捷键">
-                <i class="fa fa-chevron-left"></i> bash快捷键
+              <a href="/2017/11/06/正则表达式/" rel="next" title="正则表达式">
+                <i class="fa fa-chevron-left"></i> 正则表达式
               </a>
             
           </div>
